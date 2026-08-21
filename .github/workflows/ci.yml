@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Quality gates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - run: node --version
+      - run: npm ci
+      - run: npm run validate
+
+  action-contract:
+    name: Action contract fixture
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: ./
+        with:
+          policy-result: fixtures/policy-result.fail.json
+          baseline: fixtures/baseline.existing.json
+          output-dir: .agentproof/ci
+          fail-on: new
+      - run: test -s .agentproof/ci/agentproof.sarif
+      - run: test -s .agentproof/ci/agentproof.junit.xml
+      - run: test -s .agentproof/ci/agentproof.evidence.json

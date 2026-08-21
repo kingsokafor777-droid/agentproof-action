@@ -1,0 +1,28 @@
+{
+  "name": "agentproof-action",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Deterministic AgentProof evidence rendering and baseline gating for GitHub Actions.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/index.js -o dist --source-map --license licenses.txt",
+    "check:bundle": "npm run build && git diff --exit-code -- dist",
+    "lint": "eslint .",
+    "format": "prettier --check .",
+    "format:write": "prettier --write .",
+    "typecheck": "tsc --allowJs --checkJs --noEmit",
+    "test": "node --test",
+    "validate": "npm run format && npm run lint && npm run typecheck && npm test && npm run check:bundle"
+  },
+  "engines": {
+    "node": ">=20 <25"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.10.7",
+    "@vercel/ncc": "^0.38.3",
+    "eslint": "^9.17.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "trace_id": "fixture.trace",
+  "trace_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "policy": { "policy_id": "fixture.policy", "version": "1.0" },
+  "decision": "fail",
+  "evaluated_at": "2026-08-20T12:30:00Z",
+  "findings": [
+    {
+      "schema_version": "1.0",
+      "finding_id": "finding.restricted.write",
+      "evidence_id": "evidence.restricted.write",
+      "trace_id": "fixture.trace",
+      "policy": { "policy_id": "fixture.policy", "version": "1.0" },
+      "rule_id": "restricted-output-must-not-write",
+      "severity": "high",
+      "title": "Restricted output write",
+      "description": "Synthetic fixture prose that must not enter Action evidence artifacts.",
+      "event_ids": ["event.restricted.write"]
+    }
+  ]
+}

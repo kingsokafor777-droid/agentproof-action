@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "kind": "agentproof-action-baseline",
+  "findings": [
+    {
+      "finding_id": "finding.restricted.write",
+      "evidence_id": "evidence.restricted.write",
+      "rule_id": "restricted-output-must-not-write",
+      "severity": "high",
+      "event_ids": ["event.restricted.write"]
+    }
+  ]
+}

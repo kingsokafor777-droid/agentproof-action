@@ -1,0 +1,48 @@
+name: AgentProof Evidence Gate
+description: Validate a local AgentProof policy result, compare a local baseline, and emit SARIF/JUnit/JSON/PR evidence.
+author: Kingsley Okafor
+inputs:
+  policy-result:
+    description: Local workspace-relative path to a strict AgentProof Core PolicyResult JSON document.
+    required: true
+  baseline:
+    description: Optional local workspace-relative path to a strict AgentProof Action baseline JSON document.
+    required: false
+    default: ''
+  output-dir:
+    description: Workspace-relative directory for deterministic SARIF, JUnit, JSON, and Markdown evidence.
+    required: false
+    default: .agentproof/action
+  fail-on:
+    description: 'Gate mode: none, new, or all.'
+    required: false
+    default: new
+  comment-pr:
+    description: Explicitly opt in to a compact same-repository pull-request evidence comment.
+    required: false
+    default: 'false'
+  github-token:
+    description: Token used only by explicit same-repository pull-request commenting.
+    required: false
+    default: ''
+outputs:
+  decision:
+    description: Validated AgentProof policy decision.
+  gate-passed:
+    description: Whether the selected gate mode passed.
+  new-findings:
+    description: Count of findings absent from the strict baseline.
+  existing-findings:
+    description: Count of findings exactly matched by the strict baseline.
+  sarif-file:
+    description: Workspace-relative SARIF evidence path.
+  junit-file:
+    description: Workspace-relative JUnit evidence path.
+  evidence-file:
+    description: Workspace-relative normalized evidence JSON path.
+runs:
+  using: node24
+  main: dist/index.js
+branding:
+  icon: shield
+  color: purple

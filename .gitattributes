@@ -1,0 +1,2 @@
+# ncc emits tabbed webpack runtime boilerplate; validate generated-bundle freshness, not its formatting.
+dist/index.js whitespace=-trailing-space
